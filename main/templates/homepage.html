@@ -26,7 +26,7 @@
 			<h3 class="panel-title"><span class="glyphicon glyphicon-link"></span> Short URL</h3>
 		</div>
 		<div class="panel-body">
-			<input type="text" value="http://wuss.eu/{{ hash }}">
+			<input type="text" value="{{ SITE_URL }}/{{ hash }}">
 			<img src="{% static "img/qr.png" %}" />
 		</div>
 	</div>
@@ -36,7 +36,7 @@
 			<h3 class="panel-title"><span class="glyphicon glyphicon-edit"></span> Edit Link</h3>
 		</div>
 		<div class="panel-body">
-			<input type="text" value="https://wuss.eu/{{ hash }}/{{ uuid }}">
+			<input type="text" value="{{ SITE_URL }}/{{ hash }}/{{ uuid }}">
 			<span class="glyphicon glyphicon-warning-sign"></span> This link allows you to modify the existing short url.
 		</div>
 	</div>

@@ -48,6 +48,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'main.context_processors.site',
+)
+
 X_FRAME_OPTIONS = 'DENY'
 
 ROOT_URLCONF = 'wusseu.urls'
@@ -95,3 +99,5 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 )
+
+SITE_URL = 'http://localhost:8080'
