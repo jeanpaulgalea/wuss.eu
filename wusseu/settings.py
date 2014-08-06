@@ -47,6 +47,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+X_FRAME_OPTIONS = 'DENY'
+
 ROOT_URLCONF = 'wusseu.urls'
 
 WSGI_APPLICATION = 'wusseu.wsgi.application'
