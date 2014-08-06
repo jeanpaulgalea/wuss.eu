@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="">
+		<meta name="keywords" content="" />
+
+		<title>wuss.eu</title>
+
+		<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+		<link href="{% static "css/custom.css" %}" rel="stylesheet">
+
+		<link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="gradient">
+				<div id="logo">
+					wuss.eu
+				</div>
+				<div class="content">
+					<h1>Hey. We love links!</h1>
+					<p>A url shortener with a difference.<br />Update your links to point anywhere, anytime!</p>
+					{% block shorten %}{% endblock %}
+				</div>
+
+				{% block result %}{% endblock %}
+			</div>
+		</div>
+
+		<script src="{% static "js/jquery-1.11.1.min.js" %}"></script>
+		<script src="{% static "js/bootstrap.min.js" %}"></script>
+	</body>
+</html>

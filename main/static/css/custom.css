@@ -1,0 +1,79 @@
+@font-face {
+  font-family: 'Lemon';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lemon Regular'), local('Lemon-Regular'), 
+		url(../fonts/Lemon-Regular.woff2) format('woff2'),
+		url(../fonts/Lemon-Regular.woff) format('woff'),
+		url(../fonts/Lemon-Regular.ttf) format('truetype');
+}
+
+body {
+    background: #ddd url(../img/bg.png);
+    padding-top: 120px;
+}
+
+h1 {
+    color: #0088ac;
+}
+
+p {
+    font-size: 16px;
+    line-height: 25px;
+    margin-top: 1.5em;
+}
+
+#logo {
+    background-color: #0088ac;
+    border-radius: 65px;
+    -moz-border-radius: 65px;
+    -webkit-border-radius: 65px;
+    color: #fff;
+    font-family: 'Lemon', cursive;
+    font-size: 22px;
+    height: 130px;
+    line-height: 130px;
+    margin: 0 auto;
+    text-align: center;
+    width: 130px;
+}
+
+div.gradient {
+    background: url(../img/gradient.png) no-repeat top center;
+    min-height: 680px;
+}
+
+div.content {
+    text-align: center;
+    margin-top: 1.5em;
+}
+
+div.result {
+	text-align:center;
+	margin-top: 1.5em;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+.panel-body > input {
+	display: block;
+	border: 0;
+	outline: none;
+	background: transparent;
+	width: 100%;
+	text-align: center;
+	margin: 10px 0 10px 0;
+	font-weight: bold;
+}
+.panel-success > .panel-body > input {
+	font-size: 22px;
+}
+.panel-warning > .panel-body > input {
+	font-size: 14px;
+}
+.panel-body > img {
+	display: block;
+	margin: 10px auto;
+}

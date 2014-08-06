@@ -17,10 +17,10 @@ def shorten(request):
             l = Link()
             hash, uuid = l.shorten(link)
 
-            return render(request, 'success.html', {
-                'link': link,
+            return render(request, 'homepage.html', {
+                'form': form,
                 'hash': hash,
-                'uuid': uuid
+                'uuid': uuid,
             })
     else:
         form = ShortenUrlForm()
