@@ -13,12 +13,12 @@ class Url(object):
     def __init__(self):
         self.r = StrictRedis(host='192.168.56.120', port=6379, db=0)
 
-    def shorten(self, url):
+    def shorten(self, link):
         """
         """
         while True:
             hash = self._hash()
-            if self.r.hsetnx(hash, 'url', url):
+            if self.r.hsetnx(hash, 'link', link):
                 break
 
         uuid = self._uuid()
@@ -33,28 +33,28 @@ class Url(object):
 
         return hash, uuid
 
-    def modify(self, hash, uuid, url):
+    def modify(self, hash, uuid, link):
         """
         """
         if not (self.r.hget(hash, 'uuid') == uuid.lower()):
             raise AuthFailure
 
-        self.r.hset(hash, 'url', url)
+        self.r.hset(hash, 'link', link)
         self.r.hincrby(hash, 'mods', 1)
         self.r.hset(hash, 'changed_at', self._date())
 
     def resolve(self, hash):
         """
         """
-        url = self.r.hget(hash, 'url')
+        link = self.r.hget(hash, 'link')
 
-        if url is None:
+        if link is None:
             raise NotFound
 
         self.r.hincrby(hash, 'hits', 1)
         self.r.hset(hash, 'lasthit_at', self._date())
 
-        return url
+        return link
 
     def _hash(self, length=7):
         return ''.join(choice(letters + digits) for _ in range(length))

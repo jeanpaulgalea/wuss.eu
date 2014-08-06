@@ -12,13 +12,13 @@ def shorten(request):
     if request.method == 'POST':
         form = ShortenUrlForm(request.POST)
         if form.is_valid():
-            url = form.cleaned_data['url']
+            link = form.cleaned_data['link']
 
             u = Url()
-            hash, uuid = u.shorten(url)
+            hash, uuid = u.shorten(link)
 
             return render(request, 'success.html', {
-                'url': url,
+                'link': link,
                 'hash': hash,
                 'uuid': uuid
             })
@@ -48,16 +48,16 @@ def modify(request, hash, uuid):
     if request.method == 'POST':
         form = ShortenUrlForm(request.POST)
         if form.is_valid():
-            url = form.cleaned_data['url']
+            link = form.cleaned_data['link']
 
             try:
                 u = Url()
-                u.modify(hash, uuid, url)
+                u.modify(hash, uuid, link)
             except AuthFailure as e:
                 raise Http404
 
             return render(request, 'success.html', {
-                'url': url,
+                'link': link,
                 'hash': hash,
                 'uuid': uuid,
             })
