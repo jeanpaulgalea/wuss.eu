@@ -8,7 +8,7 @@ from redis import StrictRedis
 from .exceptions import NotFound, AuthFailure
 
 
-class Url(object):
+class Link(object):
 
     def __init__(self):
         self.r = StrictRedis(host='192.168.56.120', port=6379, db=0)

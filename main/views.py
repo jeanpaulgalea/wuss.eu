@@ -1,7 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render, redirect as _redirect
 
-from .models import Url
+from .models import Link
 from .forms import ShortenUrlForm
 from .exceptions import NotFound, AuthFailure
 
@@ -14,8 +14,8 @@ def shorten(request):
         if form.is_valid():
             link = form.cleaned_data['link']
 
-            u = Url()
-            hash, uuid = u.shorten(link)
+            l = Link()
+            hash, uuid = l.shorten(link)
 
             return render(request, 'success.html', {
                 'link': link,
@@ -34,8 +34,8 @@ def redirect(request, hash):
     """
     """
     try:
-        u = Url()
-        url = u.resolve(hash)
+        l = Link()
+        url = l.resolve(hash)
     except NotFound as e:
         raise Http404
 
@@ -51,8 +51,8 @@ def modify(request, hash, uuid):
             link = form.cleaned_data['link']
 
             try:
-                u = Url()
-                u.modify(hash, uuid, link)
+                l = Link()
+                l.modify(hash, uuid, link)
             except AuthFailure as e:
                 raise Http404
 
