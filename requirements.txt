@@ -1,2 +1,4 @@
 django==1.6.5
 redis==2.10.1
+Pillow==2.5.1
+qrcode==5.0.1
