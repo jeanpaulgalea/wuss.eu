@@ -64,7 +64,6 @@ div.result {
 	background: transparent;
 	width: 100%;
 	text-align: center;
-	margin: 10px 0 10px 0;
 	font-weight: bold;
 }
 .panel-success > .panel-body > input {
@@ -72,8 +71,12 @@ div.result {
 }
 .panel-warning > .panel-body > input {
 	font-size: 14px;
+	margin: 10px 0 10px 0;
 }
 .panel-body > img {
 	display: block;
-	margin: 10px auto;
+	margin: 0px auto;
+}
+.panel-body > a > span {
+	margin-right: 5px;
 }
