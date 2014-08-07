@@ -40,7 +40,7 @@ def qr(request, hash, save=False):
     if not l.exists(hash):
         raise Http404
 
-    response = qrimage("http://wuss.eu/"+hash)
+    response = qrimage(hash)
     response = HttpResponse(response, content_type="image/png")
 
     if not save:

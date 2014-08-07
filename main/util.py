@@ -2,15 +2,18 @@ import qrcode
 from cStringIO import StringIO
 
 from django.core.cache import cache
+from django.conf import settings
 
 
-def qrimage(data):
+def qrimage(hash):
     """
     """
-    response = cache.get(data)
+    key = "qr-image-{0}".format(hash)
 
-    if response:
-        return response
+    image = cache.get(key)
+
+    if image:
+        return image
 
     qr = qrcode.QRCode(
         version=None,
@@ -18,15 +21,14 @@ def qrimage(data):
         box_size=8,
         border=4,
     )
-    qr.add_data(data)
+
+    qr.add_data("{0}/{1}".format(settings.SITE_URL, hash))
     qr.make(fit=True)
-    #qr.make()
 
     img = qr.make_image()
     io = StringIO()
     img.save(io)
-    response = io.getvalue()
 
-    cache.set(data, response, timeout=300)
+    cache.set(key, io.getvalue(), timeout=300)
 
-    return response
+    return io.getvalue()
