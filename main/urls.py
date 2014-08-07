@@ -2,8 +2,9 @@ from django.conf.urls import patterns, url
 
 from .views import shorten, redirect, qr, modify
 
-hash = '([a-zA-Z0-9]{3,9})'
-uuid = '([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12})'
+
+hash = '(?P<hash>[a-zA-Z0-9]{3,9})'
+uuid = '(?P<uuid>[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12})'
 
 urlpatterns = patterns('',
     url(r'^$',                    view=shorten),
