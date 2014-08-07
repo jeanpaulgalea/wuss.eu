@@ -16,10 +16,22 @@ class Link(object):
     def shorten(self, link):
         """
         """
+        n = 3
+        i = 0
+
         while True:
-            hash = self._hash()
+            hash = self._hash(n)
+
             if self.r.hsetnx(hash, 'link', link):
                 break
+
+            i = i + 1
+
+            # if we didn't find an available hash after this number of tries,
+            #   increment hash length.
+            if i > 100:
+                n = n + 1
+                i = 0
 
         uuid = self._uuid()
         date = self._date()
