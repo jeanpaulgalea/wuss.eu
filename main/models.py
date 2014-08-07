@@ -40,8 +40,8 @@ class Link(object):
         self.r.hset(hash, 'hits', 0)
         self.r.hset(hash, 'mods', 0)
         self.r.hset(hash, 'created_at', date)
-        self.r.hset(hash, 'lasthit_at', None)
-        self.r.hset(hash, 'changed_at', None)
+        self.r.hset(hash, 'lasthit_at', '')
+        self.r.hset(hash, 'changed_at', '')
 
         return hash, uuid
 
