@@ -79,8 +79,9 @@ def modify(request, hash, uuid):
             except AuthFailure as e:
                 raise Http404
 
-            return render(request, 'success.html', {
-                'link': link,
+            return render(request, 'modify.html', {
+                'success': True,
+                'form': form,
                 'hash': hash,
                 'uuid': uuid,
             })
@@ -89,7 +90,7 @@ def modify(request, hash, uuid):
         form = ShortenUrlForm()
 
     return render(request, 'modify.html', {
+        'form': form,
         'hash': hash,
         'uuid': uuid,
-        'form': form,
     })
