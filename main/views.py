@@ -19,6 +19,7 @@ def shorten(request):
             hash, uuid = l.shorten(link)
 
             return render(request, 'homepage.html', {
+                'success': True,
                 'form': form,
                 'hash': hash,
                 'uuid': uuid,
