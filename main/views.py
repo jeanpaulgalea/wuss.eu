@@ -1,11 +1,8 @@
-import qrcode
-
-from cStringIO import StringIO
-
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect as _redirect
 
 from .models import Link
+from .util import qrimage
 from .forms import ShortenUrlForm
 from .exceptions import NotFound, AuthFailure
 
@@ -34,25 +31,26 @@ def shorten(request):
     })
 
 
-def qr(request, hash):
+def qr(request, hash, save=False):
     """
     """
-    qr = qrcode.QRCode(
-        version=None,
-        error_correction=qrcode.ERROR_CORRECT_H,
-        box_size=8,
-        border=4,
-    )
-    qr.add_data("http://wuss.eu/"+hash)
-    qr.make(fit=True)
-    #qr.make()
+    l = Link()
 
-    img = qr.make_image()
+    if not l.exists(hash):
+        raise Http404
 
-    io = StringIO()
-    img.save(io)
+    response = qrimage("http://wuss.eu/"+hash)
+    response = HttpResponse(response, content_type="image/png")
 
-    return HttpResponse(io.getvalue(), content_type='image/png')
+    if not save:
+        return response
+
+    header = "attachment; filename='wuss-eu-{0}.png'"
+    header = header.format(hash)
+
+    response['Content-Disposition'] = header
+
+    return response
 
 
 def redirect(request, hash):

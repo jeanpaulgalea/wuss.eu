@@ -56,6 +56,11 @@ class Link(object):
 
         return link
 
+    def exists(self, hash):
+        """
+        """
+        return self.r.exists(hash)
+
     def _hash(self, length=7):
         return ''.join(choice(letters + digits) for _ in range(length))
 

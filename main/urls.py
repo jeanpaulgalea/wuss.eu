@@ -9,5 +9,6 @@ urlpatterns = patterns('',
     url(r'^$',                    view=shorten),
     url(r'^'+hash+'/?$',          view=redirect),
     url(r'^'+hash+'/qr/?$',       view=qr),
+    url(r'^'+hash+'/qr/save/?$',  qr, {'save': True} ),
     url(r'^'+hash+'/'+uuid+'/?$', view=modify),
 )
