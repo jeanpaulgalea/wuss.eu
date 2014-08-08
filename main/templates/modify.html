@@ -6,7 +6,8 @@
 	<div class="col-xs-6 col-xs-offset-3">
 		<form action="{% url 'edit-link' hash=hash uuid=uuid %}" method="post">{% csrf_token %}
 			<div class="input-group">
-				<input type="text" name="{{ form.link.html_name }}" {% if form.link.value %}value="{{ form.link.value }}" {% endif %}class="form-control input-lg" placeholder="Paste a link to update wuss.eu/{{ hash }}&hellip;">
+{{ form.errors }}
+				<input type="text" name="{{ form.link.html_name }}" {% if form.link.value %}value="{{ form.link.value }}" {% endif %}class="form-control input-lg" placeholder="Paste a link to update your short url&hellip;">
 				<span class="input-group-btn">
 					<input type="submit" class="btn btn-default input-lg" value="Update">
 				</span>
