@@ -4,7 +4,7 @@
 <div class="row">
 	<div class="col-xs-6"></div>
 	<div class="col-xs-6 col-xs-offset-3">
-		<form action="/{{ hash }}/{{ uuid }}" method="post">{% csrf_token %}
+		<form action="{% url 'edit-link' hash=hash uuid=uuid %}" method="post">{% csrf_token %}
 			<div class="input-group">
 				<input type="text" name="{{ form.link.html_name }}" {% if form.link.value %}value="{{ form.link.value }}" {% endif %}class="form-control input-lg" placeholder="Paste a link to update wuss.eu/{{ hash }}&hellip;">
 				<span class="input-group-btn">

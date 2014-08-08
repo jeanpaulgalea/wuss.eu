@@ -4,7 +4,7 @@
 <div class="row">
 	<div class="col-xs-6"></div>
 	<div class="col-xs-6 col-xs-offset-3">
-		<form action="/" method="post">{% csrf_token %}
+		<form action="{% url 'homepage' %}" method="post">{% csrf_token %}
 			<div class="form-group{% if form.link.errors %} has-error{% endif %}">
 				{% if form.link.errors %}
 					{% for error in form.link.errors %}
@@ -33,8 +33,8 @@
 		</div>
 		<div class="panel-body">
 			<input type="text" value="{{ SITE_URL }}/{{ hash }}">
-			<img src="{{ SITE_URL }}/{{ hash }}/qr" alt="qr code" />
-			<a href="{{ SITE_URL }}/{{ hash }}/qr/save"><span class="glyphicon glyphicon-download"></span>Download QR image</a>
+			<img src="{% url 'display-qr-image' hash=hash %}" alt="qr code" />
+			<a href="{% url 'download-qr-image' hash=hash %}"><span class="glyphicon glyphicon-download"></span>Download QR image</a>
 		</div>
 	</div>
 
