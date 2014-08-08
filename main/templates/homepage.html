@@ -2,7 +2,6 @@
 
 {% block shorten %}
 <div class="row">
-	<div class="col-xs-6"></div>
 	<div class="col-xs-6 col-xs-offset-3">
 		<form action="{% url 'homepage' %}" method="post">{% csrf_token %}
 			<div class="form-group{% if form.link.errors %} has-error{% endif %}">
@@ -20,7 +19,6 @@
 			</div>
 		</form>
 	</div>
-	<div class="col-xs-6"></div>
 </div>
 {% endblock %}
 
