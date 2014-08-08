@@ -5,13 +5,18 @@ from uuid import uuid4
 
 from redis import StrictRedis
 
+from django.conf import settings
+
 from .exceptions import NotFound, AuthFailure
 
 
 class Link(object):
 
     def __init__(self):
-        self.r = StrictRedis(host='192.168.56.120', port=6379, db=0)
+        self.r = StrictRedis(
+                    host=settings.LINKDB_REDIS_HOST,
+                    port=settings.LINKDB_REDIS_PORT,
+                    db=settings.LINKDB_REDIS_DB)
 
     def shorten(self, link):
         """

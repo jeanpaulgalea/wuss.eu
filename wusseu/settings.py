@@ -105,6 +105,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'htdocs', 'static')
 
 STATIC_URL = '/static/'
 
+# Redis settings for link database
+LINKDB_REDIS_HOST = '127.0.0.1'
+LINKDB_REDIS_PORT = 6379
+LINKDB_REDIS_DB = 0
 
 
 SITE_URL = 'http://localhost:8080'
