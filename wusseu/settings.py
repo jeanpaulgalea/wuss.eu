@@ -100,14 +100,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'htdocs', 'static')
 
 STATIC_URL = '/static/'
 
-from os.path import join
-TEMPLATE_DIRS = (
-    join(BASE_DIR, 'templates'),
-)
 
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
 
 SITE_URL = 'http://localhost:8080'
