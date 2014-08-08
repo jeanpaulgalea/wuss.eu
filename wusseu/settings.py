@@ -78,7 +78,7 @@ DATABASES = { }
 CACHES = {
     'default': {
         'BACKEND': 'redis_cache.cache.RedisCache',
-        'LOCATION': '127.0.0.1:6379:1',
+        'LOCATION': '127.0.0.1:6379:2',
     }
 }
 
@@ -108,7 +108,7 @@ STATIC_URL = '/static/'
 # Redis settings for link database
 LINKDB_REDIS_HOST = '127.0.0.1'
 LINKDB_REDIS_PORT = 6379
-LINKDB_REDIS_DB = 0
+LINKDB_REDIS_DB = 1
 
 
 SITE_URL = 'http://localhost:8080'
