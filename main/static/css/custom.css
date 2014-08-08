@@ -38,6 +38,14 @@ p {
     width: 130px;
 }
 
+#logo a {
+	color: #fff;
+	text-decoration: none;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
 div.gradient {
     background: url(../img/gradient.png) no-repeat top center;
     min-height: 680px;
