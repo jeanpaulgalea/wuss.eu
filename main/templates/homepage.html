@@ -5,11 +5,18 @@
 	<div class="col-xs-6"></div>
 	<div class="col-xs-6 col-xs-offset-3">
 		<form action="/" method="post">{% csrf_token %}
-			<div class="input-group">
-				<input type="text" name="{{ form.link.html_name }}" {% if form.link.value %}value="{{ form.link.value }}" {% endif %}class="form-control input-lg" placeholder="Paste a link to shorten it&hellip;">
-				<span class="input-group-btn">
-					<input type="submit" class="btn btn-default input-lg" value="Shorten">
-				</span>
+			<div class="form-group{% if form.link.errors %} has-error{% endif %}">
+				{% if form.link.errors %}
+					{% for error in form.link.errors %}
+						<label class="control-label" for="{{ form.link.id_for_label }}">{{ error|escape }}</label>
+					{% endfor %}
+				{% endif %}
+				<div class="input-group">
+					<input id="{{ form.link.id_for_label }}" type="text" name="{{ form.link.html_name }}" {% if form.link.value %}value="{{ form.link.value }}" {% endif %}class="form-control input-lg" placeholder="{% if success %}Paste another link to shorten it&hellip;{% else %}Paste a link to shorten it&hellip;{% endif %}">
+					<span class="input-group-btn">
+						<input type="submit" class="btn btn-default input-lg" value="Shorten">
+					</span>
+				</div>
 			</div>
 		</form>
 	</div>
