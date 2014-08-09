@@ -70,6 +70,11 @@ def redirect(request, hash):
 def modify(request, hash, uuid):
     """
     """
+    l = Link()
+
+    if not l.exists(hash, uuid):
+        raise Http404
+
     if request.method == 'POST':
         form = ShortenUrlForm(request.POST)
         if form.is_valid():

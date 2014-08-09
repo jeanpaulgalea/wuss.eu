@@ -53,7 +53,7 @@ class Link(object):
     def modify(self, hash, uuid, link):
         """
         """
-        if not (self.r.hget(hash, 'uuid') == uuid.lower()):
+        if not self.exists(hash, uuid):
             raise AuthFailure
 
         self.r.hset(hash, 'link', link)
@@ -73,9 +73,12 @@ class Link(object):
 
         return link
 
-    def exists(self, hash):
+    def exists(self, hash, uuid=None):
         """
         """
+        if uuid:
+            return self.r.hget(hash, 'uuid') == uuid.lower()
+
         return self.r.exists(hash)
 
     def _hash(self, length=7):
