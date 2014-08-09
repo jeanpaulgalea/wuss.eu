@@ -45,7 +45,7 @@ def qr(request, hash, save=False):
     if not save:
         return response
 
-    header = "attachment; filename='wuss-eu-{0}.png'"
+    header = "attachment; filename='wuss_eu-{0}.png'"
     header = header.format(hash)
 
     response['Content-Disposition'] = header
