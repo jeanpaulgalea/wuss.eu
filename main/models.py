@@ -20,6 +20,7 @@ class Link(object):
 
     def shorten(self, link):
         """
+        create a new link.
         """
         n = 3
         i = 0
@@ -52,6 +53,7 @@ class Link(object):
 
     def modify(self, hash, uuid, link):
         """
+        update hash to point to a new long url.
         """
         if not self.exists(hash, uuid):
             raise AuthFailure
@@ -62,6 +64,7 @@ class Link(object):
 
     def resolve(self, hash):
         """
+        resolve hash -> long url, and update counters.
         """
         link = self.r.hget(hash, 'link')
 
@@ -75,6 +78,7 @@ class Link(object):
 
     def exists(self, hash, uuid=None):
         """
+        check if a hash or a (hash + uuid) combination exists.
         """
         if uuid:
             return self.r.hget(hash, 'uuid') == uuid.lower()
@@ -82,10 +86,19 @@ class Link(object):
         return self.r.exists(hash)
 
     def _hash(self, length=7):
+        """
+        random base62 string
+        """
         return ''.join(choice(letters + digits) for _ in range(length))
 
     def _uuid(self):
+        """
+        random uuid string
+        """
         return str(uuid4())
 
     def _date(self):
+        """
+        `YYYY-MM-DD HH:MM:SS`
+        """
         return str(datetime.utcnow().replace(microsecond=0))
