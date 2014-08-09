@@ -17,19 +17,13 @@
 	<body>
 		<div class="container">
 			<div class="gradient">
-				<div id="logo">
-					<a href="{% url 'homepage' %}">wuss.eu</a>
-				</div>
-				<div class="content">
-					<h1>Hey. We love links!</h1>
-					<p>A url shortener with a difference.<br />Update your links to point anywhere, anytime!</p>
-				</div>
-				{% block shorten %}{% endblock %}
-				{% block result %}{% endblock %}
+				{% block header %}{% endblock %}
+				{% block content %}{% endblock %}
 			</div>
 		</div>
 
 		<script src="{% static "js/jquery-1.11.1.min.js" %}"></script>
 		<script src="{% static "js/bootstrap.min.js" %}"></script>
+		{% block footer %}{% endblock %}
 	</body>
 </html>

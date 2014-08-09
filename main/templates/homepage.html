@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 
-{% block shorten %}
+{% block header %}
+<div id="logo">
+	<a href="{% url 'homepage' %}">wuss.eu</a>
+</div>
+<div class="content">
+	<h1>Hey. We love links!</h1>
+	<p>A url shortener with a difference.<br />Update your links to point anywhere, anytime!</p>
+</div>
+{% endblock %}
+
+{% block content %}
 <div class="row">
 	<div class="col-xs-6 col-xs-offset-3">
 		<form action="{% url 'homepage' %}" method="post">{% csrf_token %}
@@ -20,31 +30,4 @@
 		</form>
 	</div>
 </div>
-{% endblock %}
-
-{% block result %}
-{% if success %}
-<div class="result">
-	<div class="panel panel-success">
-		<div class="panel-heading">
-			<h3 class="panel-title"><span class="glyphicon glyphicon-link"></span> Short URL</h3>
-		</div>
-		<div class="panel-body">
-			<input type="text" value="{{ SITE_URL }}/{{ hash }}">
-			<img src="{% url 'display-qr-image' hash=hash %}" alt="qr code" />
-			<a href="{% url 'download-qr-image' hash=hash %}"><span class="glyphicon glyphicon-download"></span>Download QR image</a>
-		</div>
-	</div>
-
-	<div class="panel panel-warning">
-		<div class="panel-heading">
-			<h3 class="panel-title"><span class="glyphicon glyphicon-edit"></span> Edit Link</h3>
-		</div>
-		<div class="panel-body">
-			<input type="text" value="{{ SITE_URL }}/{{ hash }}/{{ uuid }}">
-			<span class="glyphicon glyphicon-warning-sign"></span> This link allows you to modify where your short url points to.
-		</div>
-	</div>
-</div>
-{% endif %}
 {% endblock %}

@@ -18,12 +18,10 @@ def shorten(request):
             l = Link()
             hash, uuid = l.shorten(link)
 
-            form = ShortenUrlForm()
-            return render(request, 'homepage.html', {
-                'success': True,
-                'form': form,
+            return render(request, 'shortened.html', {
                 'hash': hash,
                 'uuid': uuid,
+                'link': link,
             })
     else:
         form = ShortenUrlForm()
@@ -86,6 +84,7 @@ def modify(request, hash, uuid):
             except AuthFailure as e:
                 raise Http404
 
+            form = ShortenUrlForm()
             return render(request, 'modify.html', {
                 'success': True,
                 'form': form,

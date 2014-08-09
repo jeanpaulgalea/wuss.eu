@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block header %}
+<div id="logo-small">
+	<a href="{% url 'homepage' %}">wuss.eu</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="result">
+	<p>{{ link|urlizetrunc:30 }}</p>
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<h3 class="panel-title"><span class="glyphicon glyphicon-link"></span> Short URL</h3>
+		</div>
+		<div class="panel-body">
+			<input id="shorturl" type="text" value="{{ SITE_URL }}/{{ hash }}">
+			<img src="{% url 'display-qr-image' hash=hash %}" alt="qr code" />
+			<a href="{% url 'download-qr-image' hash=hash %}"><span class="glyphicon glyphicon-download"></span>Download QR image</a>
+		</div>
+	</div>
+
+	<div class="panel panel-warning">
+		<div class="panel-heading">
+			<h3 class="panel-title"><span class="glyphicon glyphicon-edit"></span> Edit Link</h3>
+		</div>
+		<div class="panel-body">
+			<input type="text" value="{{ SITE_URL }}/{{ hash }}/{{ uuid }}">
+			<span class="glyphicon glyphicon-warning-sign"></span> This link allows you to modify where your short url points to.
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#shorturl").select()
+});
+</script>
+{% endblock %}
