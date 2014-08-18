@@ -16,6 +16,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
+TEMPLATE_DEBUG = True
+
+ALLOWED_HOSTS = ['wuss.eu']
+
+X_FRAME_OPTIONS = 'DENY'
 
 # non dev environments must set SECRET_KEY explicitly.
 import os
@@ -26,7 +31,6 @@ if not os.environ.get('APPENV') == 'dev':
 else:
     SECRET_KEY = 'y@+-hrb_%@s8ebr=d=y61_-(0dh)1$i5ux17bwlisj0-48p$id'
 
-
 # enable DEBUG only if we're developing.
 import os
 if os.environ.get('APPENV') == 'dev':
@@ -34,18 +38,11 @@ if os.environ.get('APPENV') == 'dev':
 else:
     DEBUG = False
 
-
-TEMPLATE_DEBUG = True
-
-ALLOWED_HOSTS = ['wuss.eu']
-
-
 # non dev environments shall instruct browsers
 #   to send CSRF cookie over TLS connections only.
 import os
 if not os.environ.get('APPENV') == 'dev':
     CSRF_COOKIE_SECURE = True
-
 
 # non dev environments shall cache template compilation.
 import os
@@ -88,8 +85,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     'main.context_processors.site',
 )
-
-X_FRAME_OPTIONS = 'DENY'
 
 ROOT_URLCONF = 'wusseu.urls'
 
