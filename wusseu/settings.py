@@ -109,6 +109,3 @@ STATIC_URL = '/static/'
 LINKDB_REDIS_HOST = '127.0.0.1'
 LINKDB_REDIS_PORT = 6379
 LINKDB_REDIS_DB = 1
-
-
-SITE_URL = 'http://localhost:8080'
