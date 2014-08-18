@@ -16,16 +16,46 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'y@+-hrb_%@s8ebr=d=y61_-(0dh)1$i5ux17bwlisj0-48p$id'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# non dev environments must set SECRET_KEY explicitly.
+import os
+if not os.environ.get('APPENV') == 'dev':
+    if not os.environ.get('SECRET_KEY'):
+        raise ValueError("SECRET_KEY not set in environment")
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+else:
+    SECRET_KEY = 'y@+-hrb_%@s8ebr=d=y61_-(0dh)1$i5ux17bwlisj0-48p$id'
+
+
+# enable DEBUG only if we're developing.
+import os
+if os.environ.get('APPENV') == 'dev':
+    DEBUG = True
+else:
+    DEBUG = False
+
 
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['wuss.eu']
 
+
+# non dev environments shall instruct browsers
+#   to send CSRF cookie over TLS connections only.
+import os
+if not os.environ.get('APPENV') == 'dev':
+    CSRF_COOKIE_SECURE = True
+
+
+# non dev environments shall cache template compilation.
+import os
+if not os.environ.get('APPENV') == 'dev':
+    TEMPLATE_LOADERS = (
+        ('django.template.loaders.cached.Loader', (
+            'django.template.loaders.filesystem.Loader',
+            'django.template.loaders.app_directories.Loader',
+        )),
+    )
 
 # Application definition
 
